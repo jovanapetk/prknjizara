@@ -97,7 +97,7 @@ public class MBKorisnik implements Serializable{
             return "adminlog.xhtml?faces-redirect=true";
             }
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Uspeh","Korisnik je autentifikovan"));
-          
+              return "";
             }
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Greška","Pogrešno korisničko ime ili lozinka."));
