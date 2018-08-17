@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Book-ish</title>
+        <meta name="author" content="The Author"></meta>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript" ></script>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+         
+        <ui:insert>
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+        <b:jumbotron style="background-image: url(img/cover1.jpg); background-size: 100% ; height: 500px" >
+            <b:container>
+            
+            </b:container>
+
+        </b:jumbotron>
+          
+        <b:container>
+         <b:growl id="growlMsg" globalOnly="true" placementFrom="top" show-detail="true" show-summary="true" allowDismiss="true"  animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"/>
+
+            <b:row>
+                <b:column col-md="8">
+                    <h2>O nama</h2>
+                    <p style="text-align: justify">
+                    Pronalaženje vremena za čitanje knjige ili dugog, informativnog članka iz koga ćete nešto naučiti može biti teško i naporno. Ljudi imaju sklonost ka tome da vrednuju stvari prema tome da li im oni pružaju momentalne i očigledne koristi i dobrobiti, i zato izbegavaju čitanje. Čitanje je zaista korisno, pruža nove avanture svakom novom pročitanom stranicom i daje mogućnost našeg ličnog usavršavanja na mnogo načina.
+                    Čitanje knjiga – zašto je važno? </p>
+                    <p style="text-align: justify">
+                    Knjiga može služiti kao vozilo koje će nas odvesti na dugu avanturu i nepoznatu destinaciju. Ona može biti prijatelj, inspiracija, učitelj. Knjiga može poslužiti kao lekcija, često vrlo korisna i praktična, koja nam pruža konkretne informacije ili ponekad apstraktne, filozofske ideje. U svakom slučaju, ona nam pomaže da otvorimo svoj um za nove ideje i nove poglede na svet. 
+                    Fiktivni likovi često mogu biti izvor inspiracije, baš kao i ljudi koje upoznajemo u stvarnom životu. Od izmišljenih likova takođe možemo mnogo naučiti, oni mogu uticati na naše živote svojim rečima ili delima. Isto je i sa mestima, događajima ili činjenicama koje su opisane u štivu koje čitamo.  
+                    </p>
+                    <p style="text-align: justify">
+                    Da li ste se ikada osećali toliko napeto da ste poželeli da iskočite iz svoje kože na neko vreme? Uz dobru knjigu,i to postaje moguće. Ili, makar prividno moguće. Dobar roman vas može odvesti u potpuno drugu dimenziju sveta. Dobar članak može okupirati vašu pažnju i omogućiti vam da zaboravite na sve brige svakodnevnog života. Mnogi ljudi previše razmišljaju o svojim problemima, i često im je zaista potrebna pauza od toga. Knjiga će im pomoći da se opuste, kako bi kasnije mogli da se vrate na rešavanje svojih problema bistrog uma i rasterećenih misli.
+                    </p>
+                     <h2>Kako do nas</h2>
+                    <p:gmap center="44.7726008, 20.475168199999985" zoom="18" type="HYBRID" style="width:100%;height:400px" />
+                </b:column>
+                  <b:column col-md="4">
+                    <h2>Top liste</h2>
+                    <a href="https://www.goodreads.com/list/show/6.Best_Books_of_the_20th_Century">
+                    <b:image value="img/l1.jpg" tooltip="Najbolje knjige 20. veka" height="200px" width="150px" />
+                    </a>
+                    <a href="https://www.goodreads.com/list/show/4893.Best_Science_Fiction_of_the_21st_Century">
+                        <b:image value="img/l2.jpg" tooltip="Najbolje SciFi knjige 21. veka" height="200px" width="150px" style="margin-left: 30px" />
+                    </a>
+                    <p></p>
+                    <a href="https://www.goodreads.com/list/show/226.Favorite_books_from_my_childhood">
+                    <b:image value="img/l3.jpg" tooltip="Knjige za decu" height="200px" width="150px" style=" margin-top: 30px" />
+                    </a>
+                    <a href="https://www.goodreads.com/list/show/91.Best_Historical_Fiction_of_the_21st_Century">
+                    <b:image value="img/l4.jpg" tooltip="Istorijska fikcija 21. veka" height="200px" width="150px" style="margin-left: 30px; margin-top: 30px"/>
+                    </a>
+                    <p></p>
+                    <a href="https://www.goodreads.com/list/show/11.Best_Crime_Mystery_Books">
+                    <b:image value="img/l5.jpg" tooltip="Krimi romani" height="200px" width="150px" style=" margin-top: 30px" />
+                    </a>
+                    <a href="https://www.goodreads.com/list/show/312.Best_Humorous_Books">
+                    <b:image value="img/l6.jpg" tooltip="Humorističke knjige" height="200px" width="150px" style="margin-left: 30px; margin-top: 30px"/>
+                    </a>
+                    <p></p>
+                    <a href="https://www.goodreads.com/list/show/691.Best_Self_Help_Books">
+                    <b:image value="img/l7.jpg" tooltip="Self-help" height="200px" width="150px" style=" margin-top: 30px" />
+                    </a>
+                    <a href="https://www.goodreads.com/list/show/26495.Best_Woman_Authored_Books">
+                    <b:image value="img/l8.jpg" tooltip="Ženski autori" height="200px" width="150px" style="margin-left: 30px; margin-top: 30px"/>
+                    </a>
+                    <p></p>
+                </b:column>
+            </b:row>
+            <hr/>
+            <footer>
+            <p>© Bootsfaces 2014</p>
+            </footer>
+        </b:container>
+
+    </h:body>
+</html>

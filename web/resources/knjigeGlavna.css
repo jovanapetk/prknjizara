@@ -1,0 +1,12 @@
+.ui-datagrid .ui-paginator {
+background: #333333;
+}
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active{
+background: white;   
+border-color: white; 
+}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+background: white;       
+border-color: white;   
+
+}

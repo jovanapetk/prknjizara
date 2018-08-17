@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px">
+        <h:outputStylesheet name="knjigeGlavna.css" />
+         <ui:insert>
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+       
+         <p></p> 
+  <b:form inline="true" >
+<b:container>
+      <b:growl id="growl" globalOnly="true" placementFrom="top" show-detail="true" show-summary="true" allowDismiss="true"  animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"/> 
+<b:column span="12">
+    <b:row>
+    <b:panel id="panelCena" collapsible="false" style="background-color: #5cb85c; border-color: #white;"  >
+        <b:column span="9">
+            
+        <h:outputText value="U vašoj korpi se nalazi #{mBKnjiga.listaKnjigaUKorpi.size()} naslova, a ukupna cena računa je #{mBKnjiga.izracunajUkupnuCenu()} RSD."  style="font-size:20px; color: white"/> 
+        </b:column>
+        <b:column span="3">
+            <b:commandButton  value="Završite kupovinu" ajax="true" update="@form" style="background-color: #333333; border-color: #333333; color: white; width: 200px; " action="#{mBKnjiga.sacuvajPorudzbinu()}" icon-awesome="shopping-cart"  icon-align="right"  />
+        </b:column>
+    </b:panel>
+    </b:row>
+    <ui:repeat value="#{mBKnjiga.listaStavki}" var="s" varStatus="status">
+<b:row>    
+  
+    <b:panel collapsible="false" style="box-shadow: none; border-color: white" >
+        <b:column span="2" offset="1">
+            <img src="data:image/jpg;base64,#{mBKnjiga.vratiEncodedNaslovnu(s.isbn)}" alt="Generic placeholder thumbnail" style="height: 200px; width: 140px ;" />
+         </b:column>  
+        <b:column span="5" >
+            <h:outputText value="#{s.isbn.nazivKnjige}" style="font-size:30px; "/>
+            <p></p>  
+            <h:outputText value="-" style="font-size:45px; color: white;"/>
+            <p></p>  
+            <b:iconAwesome name="book" size="lg" style="color: #5cb85c" /> 
+            <h:outputText value="#{s.isbn.brojStrana} strana" style="font-size:15px"/>
+            <p></p>  
+            <b:iconAwesome name="truck" size="lg" style="color: #5cb85c" /> 
+            <h:outputText value="  Mogućnost isporuke u roku od 5 dana." style="font-size:15px" />
+            <p></p>
+         </b:column>
+        <b:column span="3" offset="1">
+            
+            <b:row>
+                <h:outputText value="#{s.isbn.cenaBezPDV} RSD" style="font-size:22px; color: #9B4D4D"/>
+            </b:row>
+             <p></p>  
+            <h:outputText value="-" style="font-size:30px; color: white;"/>
+            <p></p>  
+            <b:row>
+                <b:touchSpin id="kolicina" col-md="1" value="#{s.kolicina}" min="1" max="20" step="1" style="width: 45px"  onchange="#{mBKnjiga.izracunajUkupnuCenu()}" ajax="true" update="@form"  />
+            </b:row>
+            <p></p>  
+            <b:row>
+                <b:commandButton ajax="true" update="@form" style="background-color: #333333; border-color: #333333; color: white; width: 120px" action="#{mBKnjiga.ukloniIzUKorpe(s)}" icon-awesome="cart-arrow-down" tooltip="Izbaci knjigu iz korpe." />
+            </b:row>
+            <p></p>  
+        </b:column>
+    </b:panel>
+    
+</b:row> 
+    </ui:repeat>    
+    
+     
+
+</b:column>
+</b:container>
+         <b:modal id="amodal" title="Vrednost porudžbine je #{mBKnjiga.izracunajUkupnuCenu()} RSD"  styleClass="modalPseudoClass" style="height: 100%">
+          <b:row>
+          <b:column span="12" >
+              <ui:repeat value="#{mBKnjiga.listaStavki}" var="k" varStatus="status">
+              <p></p>
+          <b:column span="3">
+              <img src="data:image/jpg;base64,#{mBKnjiga.vratiEncodedNaslovnu(k.isbn)}" alt="Generic placeholder thumbnail" style="height: 150px; width: 100px " />
+          </b:column>
+              <p></p>
+          </ui:repeat>
+          </b:column>    
+          </b:row>
+          </b:modal>
+</b:form> 
+    </h:body>
+</html>

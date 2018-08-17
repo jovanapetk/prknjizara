@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+    
+        <ui:insert>
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+        <b:jumbotron style="background-image: url(img/cover1.jpg); background-size: 100% ; height: 500px" >
+        </b:jumbotron>
+        <b:container style="width: 800px">
+           <b:growl id="growl" globalOnly="true" placementFrom="bottom" show-detail="true" show-summary="true" allowDismiss="true"  animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"/>     
+            <b:panel>
+            <b:form  prependId="false">
+               
+                <h2 style="text-align: center"> Unesite podatke</h2>
+                <b:inputText id="username" placeholder="Username" value="#{mbPrijava.noviKorisnik.username1}" required="true">
+                    <f:validator validatorId="validator.UsernamePasswordVal"/>
+                    <f:facet name="prepend">
+                        <b:icon name="user" />
+                    </f:facet>
+                    <b:message for="username"/>
+                </b:inputText>
+                <b:inputText id="password" placeholder="Password" type="password" value="#{mbPrijava.noviKorisnik.password1}" required="true">
+                     <f:validator validatorId="validator.UsernamePasswordVal"/>
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="key" />
+                    </f:facet>
+                    <b:message for="password"/>
+                </b:inputText>
+                <b:inputText id="imeprezime" placeholder="Ime Prezime" value="#{mbPrijava.noviKorisnik.imePrezime}" required="true">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="male" />
+                    </f:facet>
+                </b:inputText>
+                <b:inputText id="telefon" placeholder="Broj telefona" value="#{mbPrijava.noviKorisnik.telefon}" required="true">
+                     <f:validator validatorId="validator.TelefonVal"/>
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="phone" />
+                    </f:facet>
+                        <b:message for="telefon"/>
+                </b:inputText>
+                <b:inputText id="adresa" placeholder="Adresa" value="#{mbPrijava.noviKorisnik.adresa}" required="true">
+                    <f:facet name="prepend">
+                        <b:iconAwesome name="home" />
+                    </f:facet>
+                </b:inputText>
+               
+                <b:commandButton action="#{mbPrijava.sacuvajKorisnika()}" style="background-color: #5cb85c; color: white; width: 500px" offset="2" value="Sign In" icon="log-in" size="lg" update="@form"/>
+                
+              
+            </b:form>  
+            </b:panel>
+         
+        </b:container>
+        <b:form>
+      
+        </b:form>
+    </h:body>
+</html>

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+     xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px">
+        <h:outputStylesheet name="knjigeGlavna.css" />
+         <ui:insert>
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+       <b:growl id="growl" globalOnly="true" placementFrom="top" show-detail="true" show-summary="true" allowDismiss="true"  animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"/> 
+     
+  <b:form inline="true" >
+  <b:column span="2" style="width: 320px" >
+  <p></p>
+  <h:outputText value="-" style="font-size:5px; color: white;"/>   
+  <b:panel >
+    <b:listLinks>  
+      <b:inputText value="#{mBKnjiga.searchString}" style=" align-content: center" placeholder="Naslov, autor ili tag." typeahead="true" typeahead-values="#{mBKnjiga.listaObjekataZaPretragu}"/>
+      <b:commandButton ajax="true" update="@form" style="background-color: #333333; border-color: #333333; color: white" action="#{mBKnjiga.pretraziKnjigeZaPrikaz()}" icon-awesome="search" />
+      <hr/>
+      <b:navLink  header="Osnovne kategorije" style="font-size: 15px"/>
+      <b:navLink></b:navLink>
+      <ui:repeat value="#{mBTag.listaOsnovnihTagova}" var="tag" varStatus="status">
+          <b:commandButton action="#{mBKnjiga.pretraziKnjigeSaTagom(tag)}" value="#{tag.nazivTaga}" ajax="true" update="@form" icon="tag" iconAlign="left" style="color: #369836;  box-shadow: none; border-color: white"  />
+          <p></p>
+      </ui:repeat>
+    </b:listLinks>
+  </b:panel>
+</b:column>
+<b:column span="9">
+<b:row>    
+       
+    <h:outputLabel value="-" style="color: white "  />
+<p:dataGrid var="knjiga" value="#{mBKnjiga.listaKnjigaZaPrikaz}" columns="5" layout="grid"
+                rows="10" paginator="true" id="knjige" paginatorPosition="bottom"
+        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+        rowsPerPageTemplate="10,20"  >
+        <p></p>  
+        <b:panel  style="text-align:center; height: 400px; width: 224px; box-shadow: none; border-color: white" >
+            <img src="data:image/jpg;base64,#{mBKnjiga.vratiEncodedNaslovnu(knjiga)}" alt="Generic placeholder thumbnail" style="height: 270px; width: 190px ;"  action="#{mBKnjiga.setKnjigainfo(knjiga)}"   />
+
+            <h:outputText value="#{knjiga.nazivKnjige} " style="text-align:center" />
+            <b:commandButton icon-awesome="search-plus" size="xs" action="#{mBKnjiga.setKnjigainfo(knjiga)}" tooltip="Klikni za više informacija o knjizi." style="background-color: #333333; border-color: #333333; color: white" />
+            <p></p>
+            <h:outputText value="#{knjiga.cenaBezPDV} RSD" style="text-align:center" />
+            <p></p>
+            
+            <b:commandButton  value="Dodaj u korpu" action="#{mBKnjiga.dodajUKorpu(knjiga)}" style="background-color: #369836; border-color: #369836; color: white" icon-awesome="shopping-cart" icon-align="left" /> 
+                
+        </b:panel>
+       
+</p:dataGrid> 
+<p> </p>    
+</b:row>      
+ 
+</b:column>  
+      
+      <b:modal id="amodal" title="Vrednost porudžbine je #{mBKnjiga.izracunajUkupnuCenu()} RSD"  styleClass="modalPseudoClass" style="height: 100%">
+          
+          <b:row>
+          <b:column span="12" >
+              <ui:repeat value="#{mBKnjiga.listaStavki}" var="k" varStatus="status">
+              <p></p>
+          <b:column span="3">
+              <img src="data:image/jpg;base64,#{mBKnjiga.vratiEncodedNaslovnu(k.isbn)}" alt="Generic placeholder thumbnail" style="height: 150px; width: 100px " />
+          </b:column>
+              <p></p>
+          </ui:repeat>
+          </b:column>    
+          </b:row><b:row>     
+            <hr/>
+            <footer>
+                <b:column span="6" offset="2">
+                <b:button value="Zatvori" style="background-color: #333333; border-color: #333333; color: white"  dismiss="modal" icon-awesome="close" icon-align="left"/> 
+                </b:column>
+                <b:column span="3">
+                <b:button  value=" Korpa " href="korpa.xhtml?faces-redirect=true"  style="background-color: #369836; border-color: #369836; color: white" icon-awesome="shopping-cart" icon-align="left" /> 
+                </b:column>
+            </footer>
+            </b:row>
+            </b:modal>  
+</b:form> 
+      
+    </h:body>
+</html>

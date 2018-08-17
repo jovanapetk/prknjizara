@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"    	
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px;">
+         <ui:insert>
+            <ui:include src="header.xhtml"/>
+        </ui:insert>
+     <b:growl id="growlMsg" globalOnly="true" placementFrom="top" show-detail="true" show-summary="true" allowDismiss="true"  animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"/>  
+     <p></p>
+      <b:container >
+       
+              <b:panel collapsible="false"  style="box-shadow: none; border-color: white" >
+             <b:column span="3" offset="1" > 
+             <img src="data:image/jpg;base64,#{mBKnjiga.vratiEncodedNaslovnu(null)}" alt="Generic placeholder thumbnail" style="height: 350px; width: 220px ;" />
+              </b:column>
+             <b:column span="4">
+             <b:row>
+                 <h:outputText style="font-size:30px; color: #145D5D" value="#{mBKnjiga.knjigainfo.nazivKnjige}"  />
+             <hr/>
+             </b:row>
+             <b:row>
+                 <p style="text-align: justify">
+                 <h:outputText style="font-size:15px ; color: #145D5D; " value="#{mBKnjiga.knjigainfo.opisRadnje}"  />     
+                 </p>
+             </b:row>
+             </b:column>          
+          
+                 <b:column span="2" offset="1"  >
+                     <p></p>  
+                     
+                 <h:outputText value="Cena: " style="font-size:18px; color: #BE4343" />    
+                 <h:outputText style="font-size:18px; color: #BE4343" value="#{mBKnjiga.knjigainfo.cenaBezPDV} RSD"  />
+                 <p></p>
+                 <h:outputText value="Broj strana: " style="font-size:18px" />    
+                 <h:outputText style="font-size:18px" value="#{mBKnjiga.knjigainfo.brojStrana}"  />
+                 <p></p>
+                 <h:outputText value="Datum izdavanja: " style="font-size:18px" />    
+                 <h:outputText style="font-size:18px" value="#{mBKnjiga.formatirajDatum()}"  />
+                 <hr/>
+                 <p></p>
+                 <b:form>
+                     <b:commandButton value="Dodaj u korpu" action="#{mBKnjiga.dodajUKorpu(null)}" style="background-color: #369836; border-color: #369836; color: white" icon-awesome="shopping-cart" icon-align="left" />
+                 <b:modal id="amodal" title="Vrednost porudžbine je #{mBKnjiga.izracunajUkupnuCenu()} RSD"  styleClass="modalPseudoClass" style="height: 100%">
+          <b:row>
+          <b:column span="12" >
+              <ui:repeat value="#{mBKnjiga.listaStavki}" var="k" varStatus="status">
+              <p></p>
+          <b:column span="3">
+              <img src="data:image/jpg;base64,#{mBKnjiga.vratiEncodedNaslovnu(k.isbn)}" alt="Generic placeholder thumbnail" style="height: 150px; width: 100px " />
+          </b:column>
+              <p></p>
+          </ui:repeat>
+          </b:column>    
+          </b:row>
+          </b:modal>
+                 </b:form>
+                 <hr/>
+                 <p></p>
+                 <h:outputText value="Tagovi: " style="font-size:15px" />
+                 <ui:repeat value="#{mBKnjiga.knjigainfo.tagList}" var="tag" varStatus="status">
+                     <b:commandLink value="#{tag.nazivTaga} "  style="font-size:15px; color:#369836 "  action="#"/>
+                 </ui:repeat>  
+             </b:column>    
+             </b:panel>
+              
+               <b:column span="8" offset="1">
+                <ui:repeat value="#{mBKnjiga.knjigainfo.autorList}" var="autor" varStatus="status">   
+                    <p></p>
+                    <b:row>
+                        <b:panel collapsible="false" style="background-color:#333333; color: white">
+                        <b:column span="3">
+                        <img src="data:image/jpg;base64,#{mBAutor.vratiPortetEncoded(autor)}" style="height: 300px; width: 220px " />
+                        </b:column>
+          
+                        <b:column span="6" offset="2">
+                        <b:row >
+                        <h:outputText style="font-size:30px" value="#{autor.ime}"  />
+                        <h:outputText style="font-size:30px" value=" "  /> 
+                        <h:outputText style="font-size:30px" value="#{autor.prezime}"  />  
+                        <hr/>
+                        </b:row>
+                        <b:row>
+                        <p style="text-align: justify">
+                        <h:outputText style="font-size:15px " value="#{autor.biografija}"  />  
+                        </p>
+                        </b:row>
+                        </b:column> 
+                    </b:panel>
+                    </b:row>
+                    <p></p>
+                </ui:repeat>
+               </b:column>
+            
+          
+      
+            </b:container>
+    </h:body>
+</html>

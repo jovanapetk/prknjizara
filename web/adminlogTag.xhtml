@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <h:body style="padding: 60px;">
+        <ui:insert>
+            <ui:include src="headeradmin.xhtml"/>
+        </ui:insert>
+  <h:form>
+  <b:growl id="growl" globalOnly="true" placementFrom="top" show-detail="true" show-summary="true" allowDismiss="true"  animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"/> 
+  <b:inputText  id="tag" placeholder="Naziv Taga" value="#{mBTag.nazivTagaInput}" colMd="5" offset="3" >  
+    <f:facet name="prepend">
+      <b:iconAwesome name="bookmark" />
+    </f:facet>  
+  <b:message for="tag"/>    
+  </b:inputText>     
+  <b:commandButton action="#{mBTag.sacuvajTag()}" look="primary" value="Sačuvaj" ajax="true" update="@form" /> 
+ 
+  <b:dataTable value="#{mBTag.listaTagova}" var="t" id="tableTagovi" selection-mode="single"  >
+          <b:dataTableColumn label="ID" value="#{t.tagID}" />
+    <b:dataTableColumn label="naziv taga"  >
+        <b:inputText value="#{t.nazivTaga}" />
+    </b:dataTableColumn>
+    <b:dataTableColumn label="edit">
+        <b:commandButton value="edit" icon="edit"  action="#{mBTag.izmeniTag(t)}"  />
+    </b:dataTableColumn>
+    <b:dataTableColumn label="delete">
+        <b:commandButton value="delete" icon="trash"  action="#{mBTag.obrisiTag(t)}" update="@form" />
+    </b:dataTableColumn>
+          
+  </b:dataTable>
+  
+</h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <h:body style="padding: 60px;">
+   <ui:insert>
+            <ui:include src="headeradmin.xhtml"/>
+   </ui:insert>
+<b:container fluid="true" contentDisabled="false">
+<b:panel title="Autori" look="primary" span="half" offset="3">
+<h:form prependId="false" >
+<b:form inline="true"> 
+   <b:growl id="growl" globalOnly="true" placementFrom="top" show-detail="true" show-summary="true" allowDismiss="true"  animation-enter="animated bounceInDown"
+         animation-exit="animated flipOutX"/>  
+   <b:commandButton value="Sačuvaj" look="primary"  offset="8" action="#{mBAutor.sacuvajIzmeniAutora()}" /> 
+   <p></p>
+   <b:inputText id="ime" placeholder="Ime"  colMd="10"  value="#{mBAutor.autor.ime}" required="true" offset="1" requiredMessage="Morate popuniti polje ime." >
+    <f:facet name="prepend">
+      <b:iconAwesome name="user" />
+    </f:facet>
+    <b:message for="ime"/> 
+  </b:inputText>
+   <b:inputText id="prezime" placeholder="Prezime"  colMd="10"  value="#{mBAutor.autor.prezime}" required="true" offset="1" requiredMessage="Morate popuniti polje prezime." >
+    <f:facet name="prepend">
+      <b:iconAwesome name="user" />
+    </f:facet>
+    <b:message for="prezime"/> 
+  </b:inputText>
+   
+   <b:inputTextarea rows="5" id="biografija" placeholder="Biografija" colXs="10" value="#{mBAutor.autor.biografija}" offset="1"  required="true" requiredMessage="Morate popuniti polje biografija.">
+       <f:validateLength maximum="10000" />
+  <b:message for="biografija"/>
+  </b:inputTextarea>
+<h:form enctype="multipart/form-data">
+    <p:fileUpload id="fileUploadID" fileUploadListener="#{mBAutor.uploadSlike}" mode="advanced"  allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true" />
+</h:form> 
+                      
+</b:form>
+  
+</h:form>
+</b:panel>
+</b:container>
+</h:body>
+</html>
+

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Project Name</title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+    <h:body style="padding: 60px;">
+        <ui:composition>
+        <b:navBar brand="Adminlog" brandHref="#" fixed="top" inverse="true">
+            <b:navbarLinks>
+                <b:dropMenu value="Knjige" iconAwesome="book" >
+                    <b:navLink value="Dodaj" href="adminlogDodajKnjigu.xhtml?faces-redirect=true"></b:navLink>
+                    <b:navLink value="Pretraga/Izmena/Brisanje" href="adminlog.xhtml?faces-redirect=true"></b:navLink>
+                </b:dropMenu>
+                <b:dropMenu value="Autori" iconAwesome="user" >
+                    <b:navLink value="Dodaj" href="adminlogDodajIzmeniAutora.xhtml?faces-redirect=true"></b:navLink>
+                    <b:navLink value="Pretraga/Izmena/Brisanje" href="adminlogAutor.xhtml?faces-redirect=true"></b:navLink>
+                </b:dropMenu>
+                <b:navLink value="Tagovi" href="adminlogTag.xhtml" iconAwesome="bookmark" ></b:navLink>
+                <b:form>
+                    <p></p>
+                <b:commandButton action="#{mbPrijava.logout()}" value="Povratak"  icon="chevron-left" iconAlign="right" style="height: 100%;background-color: #222; border-color: #222; color: white"/>
+                </b:form>
+            </b:navbarLinks>
+        </b:navBar>
+        </ui:composition>
+        </h:body>
+</html>

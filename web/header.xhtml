@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title></title>
+        <meta name="author" content="The Author"></meta>
+    </h:head>
+
+    <!-- Add 50px padding top to the body for the navbar -->
+    <h:body style="padding-top: 50px; padding-bottom: 20px">
+       
+        <ui:composition>
+           <b:navBar brand="Bookish" brandHref="#" inverse="true" fixed="top">
+            <b:navbarLinks>
+                <b:navLink value="Početna" href="pocetna.xhtml?faces-redirect=true" ></b:navLink>
+                <b:navLink value="Knjige" href="knjigeGlavna.xhtml?faces-redirect=true" ></b:navLink>
+                <b:navLink value="Sign in" href="signin.xhtml?faces-redirect=true"></b:navLink>
+            </b:navbarLinks> 
+               <b:navbarLinks pull="right" rendered="#{mbPrijava.prijavljeniKorisnik ne null}" >
+                <b:dropMenu rendered="#{mbPrijava.prijavljeniKorisnik ne null}" value="#{mbPrijava.prijavljeniKorisnik.username1}" icon-awesome="user" iconAlign="left"  style="background-color: #5cb85c; color: white">
+                    <b:navLink rendered="#{mbPrijava.prijavljeniKorisnik ne null}" value="Korpa" href="korpa.xhtml?faces-redirect=true" icon-awesome="shopping-cart" icon-align="left" ></b:navLink>
+                </b:dropMenu>
+                 
+                   <b:form>
+                       <p></p>
+                       <b:commandButton action="#{mbPrijava.logout()}" value="Log out"  icon="chevron-left" iconAlign="right" style="height: 100%;background-color: #222; border-color: #222; color: white"/>
+               </b:form>    
+               </b:navbarLinks>
+               <h:form rendered="#{mbPrijava.prijavljeniKorisnik eq null}" styleClass="navbar-form navbar-right">
+                <div class="form-group">
+                    <b:inputText  value="#{mbPrijava.username}" placeholder="Username" fieldSize="sm"/>
+                    <!--input type="text" class="form-control" placeholder="Search"/-->
+                </div>
+                <div class="form-group">
+                    <b:inputText value="#{mbPrijava.password}" placeholder="Password" fieldSize="sm"/>
+                </div> 
+                #{' '}
+                <b:commandButton action="#{mbPrijava.prijaviKorisnika()}" value="Log in" look="success" icon="chevron-right" iconAlign="right"/>
+            </h:form> 
+           
+        </b:navBar>
+        </ui:composition>
+       
+    </h:body>
+</html>
